@@ -1,6 +1,6 @@
 export const environment = {
-  SERVER_URL: `./`,
+  SERVER_URL: `https://greenleague.xin`,
   production: true,
-  useHash: true,
+  useHash: false,
   hmr: false,
 };

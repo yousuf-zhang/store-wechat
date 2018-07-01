@@ -1,0 +1,38 @@
+<div nz-row>
+  <div nz-col>
+    <nz-card class="ant-card__body-nopadding">
+      <div class="half-float">
+        <img src="./assets/banner.png">
+      </div>
+    </nz-card>
+  </div>
+</div>
+<nz-list [nzRenderItem]="item" [nzDataSource]="products" [nzGrid]="{ lg: 6, md: 8, sm: 12, xs: 24 }">
+  <ng-template #item let-item>
+    <nz-list-item>
+      <nz-card nzHoverable [nzCover]="cover">
+        <ng-template #cover>
+          <img alt="{{item.productName}}" src="{{item.cover}}">
+        </ng-template>
+        <nz-card-meta [nzTitle]="nzTitle" [nzDescription]="description">
+          <ng-template #nzTitle>{{item.productName}}</ng-template>
+          <ng-template #description>
+            <div nz-row>
+              <div nz-col [nzSpan]="8">
+                <h1 class="text-center text-red-7 " [innerHTML] = "yuan(item.amount)"></h1>
+              </div>
+              <div nz-col [nzSpan]="16" class="pb-sm">{{ item.description }}</div>
+            </div>
+          </ng-template>
+        </nz-card-meta>
+        <div class="text-center bg-volcano-1 text-red-7 mt-md">
+          <div nz-row class="p-sm">
+            <div nz-col (click)="pay(item.productNo)">
+              <h3 class="text-red-7 mb0">立即购买</h3>
+            </div>
+          </div>
+        </div>
+      </nz-card>
+    </nz-list-item>
+  </ng-template>
+</nz-list>

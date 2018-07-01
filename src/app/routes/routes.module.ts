@@ -1,35 +1,37 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@shared/shared.module';
-import { RouteRoutingModule } from './routes-routing.module';
-// dashboard pages
-import { DashboardComponent } from './dashboard/dashboard.component';
-// passport pages
-import { UserLoginComponent } from './passport/login/login.component';
-import { UserRegisterComponent } from './passport/register/register.component';
-import { UserRegisterResultComponent } from './passport/register-result/register-result.component';
 // single pages
 import { CallbackComponent } from './callback/callback.component';
-import { UserLockComponent } from './passport/lock/lock.component';
+// dashboard pages
 import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
+import { OpenWechatComponent } from './exception/open-wechat.component';
+import { RouteRoutingModule } from './routes-routing.module';
+import { HomeComponent } from './wechat/components/home/home.component';
+import { LoginComponent } from './wechat/components/login.component';
+import { PersonalCenterComponent } from './wechat/components/personal-center/personal-center.component';
+import { QrCodeComponent } from './wechat/components/qr-code/qr-code.component';
+import { ShoppingCartComponent } from './wechat/components/shopping-cart/shopping-cart.component';
+import { WechatComponent } from './wechat/wechat.component';
 
 
 const COMPONENTS = [
-  DashboardComponent,
-  // passport pages
-  UserLoginComponent,
-  UserRegisterComponent,
-  UserRegisterResultComponent,
-  // single pages
+  WechatComponent,
+  OpenWechatComponent,
+  LoginComponent,
   CallbackComponent,
-  UserLockComponent,
   Exception403Component,
   Exception404Component,
   Exception500Component
 ];
-const COMPONENTS_NOROUNT = [];
+const COMPONENTS_NOROUNT = [
+  HomeComponent,
+  QrCodeComponent,
+  ShoppingCartComponent,
+  PersonalCenterComponent,
+];
 
 @NgModule({
   imports: [ SharedModule, RouteRoutingModule ],

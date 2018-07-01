@@ -1,0 +1,18 @@
+<weui-tabbar>
+  <weui-tab heading="首页" [active]="actives[0]" (select)="select('home')"
+            [icon]="'<i class=\'anticon anticon-home\'></i>'">
+    <app-home [products]="products"></app-home>
+  </weui-tab>
+  <weui-tab heading="我的二维码" [active]="actives[1]" (select)="select('qr-code')"
+            [icon]="'<i class=\'anticon anticon-qrcode\'></i>'">
+    <app-qr-code [qrCodeUrl]="qrCodeUrl"></app-qr-code>
+  </weui-tab>
+  <weui-tab heading="购物车" [active]="actives[2] "(select)="select('shopping-cart')"
+            [icon]="'<i class=\'anticon anticon-shopping-cart\'></i>'">
+    <app-shopping-cart></app-shopping-cart>
+  </weui-tab>
+  <weui-tab heading="个人中心" [active]="actives[3]" (select)="select('personal-center')"
+            [icon]="'<i class=\'anticon anticon-user\'></i>'">
+    <app-personal-center [parentAgency]="parentAgency" [agency]="agency"></app-personal-center>
+  </weui-tab>
+</weui-tabbar>

@@ -1,0 +1,9 @@
+<nz-card nzHoverable [nzCover]="coverTemplate">
+  <nz-card-meta [nzTitle]="this.settings.user.name"  nzDescription="扫一扫上面的二维码图案" [nzAvatar]="avatarTemplate"></nz-card-meta>
+</nz-card>
+<ng-template #coverTemplate>
+  <img alt="qr-code" [src]="qrCodeUrl"/>
+</ng-template>
+<ng-template #avatarTemplate>
+  <nz-avatar [nzSrc]="this.settings.user.avatar"></nz-avatar>
+</ng-template>

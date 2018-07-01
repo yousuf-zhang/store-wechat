@@ -18,6 +18,7 @@ registerLocaleData(localeZhHans);
 
 // @delon/form: JSON Schema form
 import { JsonSchemaModule } from '@shared/json-schema/json-schema.module';
+import { WeUiModule } from 'ngx-weui';
 
 export function StartupServiceFactory(startupService: StartupService): Function {
   return () => startupService.load();
@@ -37,7 +38,8 @@ export function StartupServiceFactory(startupService: StartupService): Function 
     LayoutModule,
     RoutesModule,
     // JSON-Schema form
-    JsonSchemaModule
+    JsonSchemaModule,
+    WeUiModule.forRoot()
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'zh-Hans' },
