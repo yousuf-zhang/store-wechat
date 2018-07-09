@@ -1,3 +1,41 @@
-<p>
-  shopping-cart works!
-</p>
+<nz-list
+  [nzDataSource]="data"
+  [nzItemLayout]="'vertical'"
+  [nzRenderItem]="item">
+  <ng-template #item let-item>
+    <nz-list-item [nzContent]="content" >
+      <ng-template #content>
+        <div nz-row>
+          <div nz-col [nzSpan]="8">
+            <nz-card class="ant-card__body-nopadding">
+              <div class="half-float">
+                <img [src]="item.cover">
+              </div>
+            </nz-card>
+          </div>
+          <div nz-col [nzSpan]="8" class="pb-sm text-center" >
+            <div nz-row>
+              <div nz-col style="padding-top: 10%">
+                {{item.productNo}}
+              </div>
+              <div nz-col style="padding-top: 10%">
+                <h3 class="text-center text-red-7 " [innerHTML] = "yuan(item.amount)"></h3>
+              </div>
+            </div>
+          </div>
+          <div nz-row>
+            <div nz-col [nzSpan]="8" class="pb-sm text-center" style="padding-top: 10%">
+              <div class="weui-cell__ft">
+                <weui-stepper [(ngModel)]="item.count" [min]="1" [max]="10"></weui-stepper>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </ng-template>
+      <nz-list-item-meta [nzTitle]="nzTitle">
+        <ng-template #nzTitle><a href="{{item.href}}">{{item.productName}}</a></ng-template>
+      </nz-list-item-meta>
+    </nz-list-item>
+  </ng-template>
+</nz-list>
