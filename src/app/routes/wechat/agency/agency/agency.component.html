@@ -1,0 +1,27 @@
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__hd text-right">
+    分享人: {{agency.parentId}}
+  </div>
+  <div class="weui-panel__bd">
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+      <div class="weui-media-box__hd">
+        <img class="weui-media-box__thumb" [src]="agency.avatar"
+             alt="">
+      </div>
+      <div class="weui-media-box__bd">
+        <p class="weui-media-box__desc">
+          姓名: {{agency.name}} {{agency.id}}<br><br>
+          <span *ngIf="showPhone">电话: {{agency.telephone}}<br><br></span>
+          VIP会员级别: {{level[agency.level]}}
+        </p>
+      </div>
+    </a>
+  </div>
+  <!--<div class="weui-panel__ft">-->
+    <!--<a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">-->
+      <!--<div class="weui-cell__bd">会员详情</div>-->
+      <!--<span class="weui-cell__ft"></span>-->
+    <!--</a>-->
+  <!--</div>-->
+</div>
+

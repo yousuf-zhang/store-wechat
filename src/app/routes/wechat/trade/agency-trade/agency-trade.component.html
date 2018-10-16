@@ -1,0 +1,6 @@
+<article class="weui-article">
+  <weui-infiniteloader (loadmore)="onLoadMore($event)">
+    <app-trade *ngFor="let trade of trades" [trade]="trade" [agencyFlag]="false"></app-trade>
+  </weui-infiniteloader>
+</article>
+<weui-loadmore *ngIf="!trades" type="line"></weui-loadmore>

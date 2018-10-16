@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/store-wechat",
+            "outputPath": "/var/www/greenleague.xin/html",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,7 +30,8 @@
               "src/styles.less"
             ],
             "scripts": [
-              "node_modules/ajv/dist/ajv.bundle.js"
+              "node_modules/ajv/dist/ajv.bundle.js",
+              "./node_modules/g2-mobile/index.js"
             ]
           },
           "configurations": {

@@ -1,0 +1,34 @@
+<weui-navbar>
+  <weui-tab heading="全部" [active]="true" (select)="select($event, -3)" >
+    <article class="weui-article">
+      <weui-infiniteloader (loadmore)="onLoadMore($event, -3)">
+      <app-trade *ngFor="let trade of trades" [trade]="trade"></app-trade>
+      </weui-infiniteloader>
+      <weui-loadmore *ngIf="!trades" type="line"></weui-loadmore>
+    </article>
+  </weui-tab>
+  <weui-tab heading="待付款" [badge]="1" [active]="false" (select)="select($event, 0)">
+    <article class="weui-article">
+      <weui-infiniteloader (loadmore)="onLoadMore($event, 0)">
+      <app-trade *ngFor="let trade of trades" [trade]="trade"></app-trade>
+      </weui-infiniteloader>
+      <weui-loadmore *ngIf="!trades" type="line"></weui-loadmore>
+    </article>
+  </weui-tab>
+  <weui-tab heading="待收货" [badge]="2" [active]="false" (select)="select($event, 1)">
+    <article class="weui-article">
+      <weui-infiniteloader (loadmore)="onLoadMore($event, 1)">
+      <app-trade *ngFor="let trade of trades" [trade]="trade"></app-trade>
+      </weui-infiniteloader>
+      <weui-loadmore *ngIf="!trades" type="line"></weui-loadmore>
+    </article>
+  </weui-tab>
+  <weui-tab heading="已完成" [active]="false" (select)="select($event, 2)">
+    <article class="weui-article">
+      <weui-infiniteloader (loadmore)="onLoadMore($event, 2)">
+      <app-trade *ngFor="let trade of trades" [trade]="trade"></app-trade>
+      </weui-infiniteloader>
+      <weui-loadmore *ngIf="!trades" type="line"></weui-loadmore>
+    </article>
+  </weui-tab>
+</weui-navbar>

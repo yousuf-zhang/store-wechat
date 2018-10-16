@@ -22,14 +22,18 @@ const routes: Routes = [
     component: LayoutFullScreenComponent,
     canActivate: [ WechatGuardGuard ],
     children: [
-      { path: '', redirectTo: 'wechat', pathMatch: 'full'},
-      { path: 'wechat', component: WechatComponent },
+      { path: '', redirectTo: 'wechat/home', pathMatch: 'full'},
+      { path: 'wechat/home', component: WechatComponent },
       { path: 'wechat/:type', component: WechatComponent },
-      { path: 'agency', loadChildren: './wechat/agency/agency.module#AgencyModule', canLoad: [ WechatGuardGuard ]}
+      { path: 'agency', loadChildren: './wechat/agency/agency.module#AgencyModule', canLoad: [ WechatGuardGuard ]},
+      { path: 'product', loadChildren: './wechat/product/product.module#ProductModule', canLoad: [ WechatGuardGuard ]},
+      { path: 'trade', loadChildren: './wechat/trade/trade.module#TradeModule', canLoad: [ WechatGuardGuard ]},
+      { path: 'account', loadChildren: './wechat/account/account.module#AccountModule', canLoad: [ WechatGuardGuard ]},
+      { path: 'introduce', loadChildren: './wechat/introduce/introduce.module#IntroduceModule', canLoad: [ WechatGuardGuard ]}
     ]
   },
   // 单页不包裹Layout
-  { path: 'callback/:type', component: CallbackComponent },
+  { path: 'callback/:type', component: CallbackComponent, data: {title: '认证'} },
   { path: '403', component: Exception403Component },
   { path: '404', component: Exception404Component },
   { path: '500', component: Exception500Component },

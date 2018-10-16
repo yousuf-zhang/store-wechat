@@ -1,0 +1,28 @@
+<div class="weui-tab" *ngIf="product">
+  <div class="weui-tab__panel">
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd" style="color: black;">{{product.productName}}</div>
+      <div class="inline">
+        <img src="./assets/product1.jpg">
+      </div>
+      <div class="weui-panel__bd" *ngIf="product">
+        <div class="weui-media-box weui-media-box_text" style="color: black;">
+          统一零售价
+            <span class="text-red" [innerHTML] = "yuan(product.amount)"></span><br>
+          VIP会员尊享价
+            <span class="text-red" [innerHTML] = "yuan(product.vipAmount)"></span>
+        </div>
+      </div>
+      <div nz-row class="pb-md pl-sm">
+        <div nz-col class="weui-media-box__desc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买两支即可成为VIP会员,尊享折扣优惠+佣金,
+          详情查看"润玺尔公众号"->润玺尔 ->成为VIP会员</div>
+      </div>
+      <div class="inline">
+        <img src="./assets/product.jpg">
+      </div>
+    </div>
+  </div>
+  <div class="weui-tabbar">
+        <button weui-button (click)="addShoppingCart()">购买</button>
+  </div>
+</div>

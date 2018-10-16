@@ -35,7 +35,7 @@ import { DelonAuthConfig } from '@delon/auth';
 export function delonAuthConfig(): DelonAuthConfig {
   return Object.assign(new DelonAuthConfig(), <DelonAuthConfig>{
     login_url: '/login',
-    ignores: [ /\/login/, /assets\//, /\/open-wechat/ ]
+    ignores: [ /\/login/, /assets\//, /\/open-wechat/, /\/qrcode/, /\/introduce\// ]
   });
 }
 

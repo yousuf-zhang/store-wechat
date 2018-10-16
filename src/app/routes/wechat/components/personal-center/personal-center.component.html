@@ -1,69 +1,70 @@
-<nz-card [nzActions]="[actionSetting,myShop,myAgency,inventoryControl]">
-  <nz-card-meta [nzTitle]="agency?.name" [nzDescription]="description" [nzAvatar]="avatarTemplate"></nz-card-meta>
+<nz-card [nzCover]="coverTemplate" [nzActions]="[actionSetting,myShop,myAgency]">
+  <nz-card-meta [nzTitle]="agency?.name" [nzDescription]="description" [nzAvatar]="avatarTemplate" routerLink="/agency/edit"></nz-card-meta>
 </nz-card>
 <div class="weui-cells__title"></div>
-<div class="weui-cells">
-  <div class="weui-cell weui-cell_access">
+<div class="weui-cells" style="font-size: 14px">
+  <div class="weui-cell weui-cell_access" routerLink="/product/address-list">
     <div class="weui-cell__bd">
       <span style="vertical-align: middle">收货地址</span>
     </div>
     <div class="weui-cell__ft"></div>
   </div>
   <div class="weui-cell weui-cell_access">
-    <div class="weui-cell__bd">
+    <div class="weui-cell__bd" routerLink="/trade/list">
       <span style="vertical-align: middle">我的订单</span>
-      <span class="weui-badge" style="margin-left: 5px;">8</span>
     </div>
     <div class="weui-cell__ft"></div>
   </div>
   <div class="weui-cell weui-cell_access">
-    <div class="weui-cell__bd">
+    <div class="weui-cell__bd" routerLink="/trade/agency/list">
       <span style="vertical-align: middle">会员订单</span>
-      <span class="weui-badge" style="margin-left: 5px;">8</span>
     </div>
     <div class="weui-cell__ft">详细信息</div>
   </div>
-  <div class="weui-cell weui-cell_access">
-    <div class="weui-cell__bd">
-      <span style="vertical-align: middle">我的消费额</span>
-      <span class="weui-badge" style="margin-left: 5px;">New</span>
-    </div>
-    <div class="weui-cell__ft"></div>
-  </div>
 </div>
 
+<ng-template #coverTemplate>
+  <img alt="banner" src="./assets/banner.jpg"/>
+</ng-template>
 <ng-template #avatarTemplate>
   <nz-avatar [nzSrc]="agency?.avatar" nzSize="large"></nz-avatar>
 </ng-template>
 <ng-template #description>
   <div nz-row>
-    <div nz-col nzSpan="8">身份:</div>
-    <div nz-col nzSpan="14">会员 {{ agency?.id }}</div>
+    <div nz-col nzSpan="8">VIP会员级别:</div>
+    <div nz-col nzSpan="14">{{level[agency?.level]}}</div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="8">会员ID:</div>
+    <div nz-col nzSpan="14">{{ agency?.id }}</div>
   </div>
   <div nz-row>
     <div nz-col nzSpan="8">分享人:</div>
-    <div nz-col nzSpan="14"> {{ parentAgency?.name }} {{ parentAgency?.id }}</div>
+    <div nz-col nzSpan="14">
+      <nz-avatar nzIcon="anticon anticon-user" [nzSrc]="parentAgency?.avatar"></nz-avatar>
+      {{ parentAgency?.name }}</div>
   </div>
+
 </ng-template>
 
 <ng-template #actionSetting>
-  <i class="anticon anticon-setting"></i>
-  <h4>设置</h4>
+  <div routerLink="/agency/edit">
+    <i class="anticon anticon-setting"></i>
+    <h4>设置</h4>
+  </div>
+
 </ng-template>
 
 <ng-template #myShop>
-  <i class="anticon anticon-shop"></i>
-  <h4>我的店铺</h4>
+  <div routerLink="/account/detail">
+    <i class="anticon anticon-bank"></i>
+    <h4 >我的业绩</h4>
+  </div>
 </ng-template>
 
 <ng-template #myAgency>
   <div (click)="goToAgency()">
     <i class="anticon anticon-team"></i>
-    <h4>我的代理</h4>
+    <h4>我的会员</h4>
   </div>
-</ng-template>
-
-<ng-template #inventoryControl>
-  <i class="anticon anticon-hdd"></i>
-  <h4>库存管理</h4>
 </ng-template>

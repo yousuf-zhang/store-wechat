@@ -7,6 +7,10 @@ export class Product {
   cover: string;
   // 零售价
   amount: number;
+  // 会员价
+  vipAmount: number;
+  // 产品图片
+  images?: string[];
   // 作用
   effect?: string;
   // 成分
@@ -15,4 +19,6 @@ export class Product {
   description: string;
   // 质检报告
   qualityReport?: string;
+  // 数量
+  count?: number;
 }

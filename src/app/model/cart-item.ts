@@ -1,9 +1,12 @@
+import { Product } from './product';
+
 export class CartItem {
-  /**产品链接*/
-  href: string;
-  productNo: string;
-  productName: string;
-  count: number;
-  amount: number;
-  cover: string;
+  products: Product[];
+  totalCount: number;
+  totalAmount: number;
+  /**折扣价*/
+  discountAmount: number;
+  /**应付金额*/
+  payableAmount: number;
+  remark?: string;
 }

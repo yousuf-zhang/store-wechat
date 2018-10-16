@@ -1,41 +1,77 @@
-<nz-list
-  [nzDataSource]="data"
-  [nzItemLayout]="'vertical'"
-  [nzRenderItem]="item">
-  <ng-template #item let-item>
-    <nz-list-item [nzContent]="content" >
-      <ng-template #content>
-        <div nz-row>
-          <div nz-col [nzSpan]="8">
-            <nz-card class="ant-card__body-nopadding">
-              <div class="half-float">
-                <img [src]="item.cover">
-              </div>
-            </nz-card>
+<div class="weui-panel weui-panel_access" *ngIf="data">
+  <div class="weui-panel__hd">购买的商品列表</div>
+  <div class="weui-panel__bd" >
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" *ngFor="let item of data.products">
+      <div class="weui-media-box__hd">
+        <img class="weui-media-box__thumb" src="./assets/product1.jpg"
+             alt="">
+      </div>
+      <div class="weui-media-box__bd">
+        <div class="weui-flex">
+          <div class="weui-flex__item weui-cell__ft text-left">
+            <h4 class="weui-media-box__title text-red-7" [innerHTML] = "yuan(item.amount)"></h4>
           </div>
-          <div nz-col [nzSpan]="8" class="pb-sm text-center" >
-            <div nz-row>
-              <div nz-col style="padding-top: 10%">
-                {{item.productNo}}
-              </div>
-              <div nz-col style="padding-top: 10%">
-                <h3 class="text-center text-red-7 " [innerHTML] = "yuan(item.amount)"></h3>
-              </div>
-            </div>
+          <div class="weui-flex__item text-right">
+            <a (click)="removeItem(item)"><i class="anticon anticon-close"></i></a>
           </div>
-          <div nz-row>
-            <div nz-col [nzSpan]="8" class="pb-sm text-center" style="padding-top: 10%">
-              <div class="weui-cell__ft">
-                <weui-stepper [(ngModel)]="item.count" [min]="1" [max]="10"></weui-stepper>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </ng-template>
-      <nz-list-item-meta [nzTitle]="nzTitle">
-        <ng-template #nzTitle><a href="{{item.href}}">{{item.productName}}</a></ng-template>
-      </nz-list-item-meta>
-    </nz-list-item>
-  </ng-template>
-</nz-list>
+        <div class="weui-media-box__desc" >
+          <div class="weui-cell">
+            <div class="weui-cell__bd weui-media-box__desc pr-lg">
+              <p>{{item.productName}}</p>
+            </div>
+            <div class="text-right">
+              <weui-stepper [(ngModel)]="item.count" (change)="changeData(item, $event)" [min]="1" [max]="99"></weui-stepper>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="weui-panel__ft mb-lg">
+    <div class="weui-cell__bd">
+      <div class="weui-flex">
+        <div class="weui-flex__item weui-cell__ft pr-lg">
+          商品总额:
+        </div>
+        <div class="weui-flex__item text-red-7">
+          <span [innerHTML] = "yuan(data.totalAmount)"></span>
+        </div>
+      </div>
+    </div>
+    <div class="weui-cell__bd">
+      <div class="weui-flex">
+        <div class="weui-flex__item weui-cell__ft pr-lg">
+          VIP会员尊享优惠:
+        </div>
+        <div class="weui-flex__item text-red-7">
+          <span [innerHTML] = "yuan(data.discountAmount)"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel__ft mb-lg">
+    <div class="weui-cell__bd">
+      <div class="weui-flex">
+        <div class="weui-flex__item weui-cell__ft pr-lg">
+          <button weui-button weui-mini="mini" (click)="goHome()">继续逛逛</button>
+        </div>
+        <div class="weui-flex__item">
+          <button weui-button weui-mini="mini" (click)="goCheckOut()">去结算</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!data">
+  <div nz-row>
+    <div nz-col>
+      <nz-card class="ant-card__body-nopadding">
+        <div class="inline">
+          <img src="./assets/banner.jpg">
+        </div>
+      </nz-card>
+    </div>
+  </div>
+  <weui-loadmore type="line" lineText = "购物车空空的"></weui-loadmore>
+</div>

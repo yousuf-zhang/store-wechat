@@ -1,9 +1,31 @@
-<nz-card nzHoverable [nzCover]="coverTemplate">
-  <nz-card-meta [nzTitle]="this.settings.user.name"  nzDescription="扫一扫上面的二维码图案" [nzAvatar]="avatarTemplate"></nz-card-meta>
-</nz-card>
-<ng-template #coverTemplate>
-  <img alt="qr-code" [src]="qrCodeUrl"/>
-</ng-template>
-<ng-template #avatarTemplate>
-  <nz-avatar [nzSrc]="this.settings.user.avatar"></nz-avatar>
-</ng-template>
+<!--<nz-card nzHoverable>-->
+  <!--<nz-card-meta [nzTitle]="this.settings.user.name"  nzDescription="扫一扫下面的二维码图案" [nzAvatar]="avatarTemplate"></nz-card-meta>-->
+<!--</nz-card>-->
+<!--<ng-template #avatarTemplate>-->
+  <!--<nz-avatar [nzSrc]="this.settings.user.avatar"></nz-avatar>-->
+<!--</ng-template>-->
+<!--<article class="weui-article">-->
+  <!--<img [src]="qrCodeUrl">-->
+<!--</article>-->
+<div class="weui-panel weui-panel_access image-background">
+  <div class="weui-panel__bd">
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+      <div class="weui-media-box__hd">
+
+        <img class="weui-media-box__thumb" [src]="this.settings.user.avatar"
+             alt="">
+      </div>
+      <div class="weui-media-box__bd">
+        <h4 class="weui-media-box__title"></h4>
+        <p class="weui-media-box__desc">{{this.settings.user.name}}<br/>润玺尔合伙人<br>扫一扫下面二维码图案</p>
+      </div>
+    </a>
+    <div class="inline">
+        <div class="inline" style="margin-left: 25%; margin-top: 35%; padding-bottom: 50%">
+          <div class="width-50">
+            <img [src]="qrCodeUrl">
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<app-address *ngIf="addAddress" [showStatus]="false" (addressEmit)="getNewAddress($event)"></app-address>
+<div class="weui-cells" *ngIf="showAddress">
+  <a class="weui-cell weui-cell_access" routerLink="/product/address-list">
+    <div class="weui-cell__bd">
+      <p>
+        {{address.name}}<br>
+        <ellipsis lines="3">
+         {{address.province}} {{address.city}} {{address.country}} {{address.address}}
+        </ellipsis>
+      </p>
+    </div>
+    <div class="weui-cell__ft">{{address.phone}}</div>
+  </a>
+</div>
+<div class="weui-panel weui-panel_access" *ngIf="data">
+  <div class="weui-panel__hd">
+    <div class="weui-flex">
+      <div class="weui-flex__item weui-cell__ft text-left">商品订单</div>
+      <div class="weui-flex__item weui-cell__ft text-right"><a routerLink="/wechat/shopping-cart">修改订单</a></div>
+    </div>
+  </div>
+  <div class="weui-panel__bd" >
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" *ngFor="let item of data.products">
+      <div class="weui-media-box__hd">
+        <img class="weui-media-box__thumb" src="./assets/product1.jpg"
+             alt="">
+      </div>
+      <div class="weui-media-box__bd">
+        <div class="weui-flex">
+          <div class="weui-flex__item weui-cell__ft text-left">
+            {{item.productName}}<br>
+            <h4 class="weui-media-box__title text-red-7" [innerHTML] = "yuan(item.amount)"></h4>
+          </div>
+          <div class="weui-flex__item weui-cell__ft text-right">
+            <h4 class="weui-media-box__title text-red-7">x{{item.count}}</h4>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="weui-panel__ft">
+    <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+      <div class="weui-cell__bd">微信支付</div>
+    </a>
+  </div>
+  <div class="weui-panel__hd">
+    <div class="weui-flex ">
+      <div class="weui-flex__item weui-cell__ft text-left">商品金额</div>
+      <div class="weui-flex__item weui-cell__ft text-right">
+        <span class="text-red-7" [innerHTML] = "yuan(data.totalAmount)"></span>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel__hd">
+    <div class="weui-flex ">
+      <div class="weui-flex__item weui-cell__ft text-left">VIP会员尊享优惠</div>
+      <div class="weui-flex__item weui-cell__ft text-right">
+        <span class="text-red-7" [innerHTML] = "yuan(data.discountAmount)"></span>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel__hd">
+    <div class="weui-flex ">
+      <div class="weui-flex__item weui-cell__ft text-left">应付金额</div>
+      <div class="weui-flex__item weui-cell__ft text-right">
+        <span class="text-red-7" [innerHTML] = "yuan(data.payableAmount)"></span>
+      </div>
+    </div>
+  </div>
+  <div class="weui-cell">
+    <div class="weui-cell__bd">
+      <textarea class="weui-textarea"
+                placeholder="备注" rows="3" [(ngModel)]="data.remark" name="remark"
+                weui-textarea weui-cn="2" maxlength="200"></textarea>
+    </div>
+  </div>
+</div>
+<div class="weui-btn-area">
+  <button weui-button (click)="mask.show()">支付</button>
+</div>
+
+<weui-mask #mask>
+  <div class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <label class="weui-form-preview__label">确认订单信息</label>
+      <em class="weui-form-preview__value">&nbsp;</em>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">收货人</label>
+        <span class="weui-form-preview__value">{{address.name}} {{address.phone}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">收货地址</label>
+        <span class="weui-form-preview__value"> {{address.province}} {{address.city}} {{address.country}}
+          {{address.address}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">商品数量</label>
+        <span class="weui-form-preview__value">{{data.totalCount}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">应付金额</label>
+        <span class="weui-form-preview__value" [innerHTML] = "yuan(data.payableAmount)"></span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">支付方式</label>
+        <span class="weui-form-preview__value">微信支付</span>
+      </div>
+    </div>
+    <div class="weui-form-preview__ft">
+      <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" (click)="mask.hide()">修改</button>
+      <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" (click)="pay()">立即支付</button>
+    </div>
+  </div>
+</weui-mask>
+<weui-mask #loadMask [loading]="loading" [backdrop]="false"></weui-mask>

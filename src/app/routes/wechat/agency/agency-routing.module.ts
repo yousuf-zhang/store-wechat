@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AgencyComponent } from './agency.component';
-import { AngecyListComponent } from './angecy-list/angecy-list.component';
+import { AgencyEditComponent } from './agency-edit/agency-edit.component';
+import { AgencyPanelComponent } from './agency-panel.component';
+import { AgencyListComponent } from './angecy-list/agency-list.component';
 
 const routes: Routes = [
   { path: '',
-    component: AgencyComponent,
+    component: AgencyPanelComponent,
     children: [
-      {path: '', component: AngecyListComponent}
-    ] }
+      {path: 'list', component: AgencyListComponent, data: {title: '会员列表'}},
+      {path: 'edit', component: AgencyEditComponent, data: {title: '会员设置'}}
+    ]}
 ];
 
 @NgModule({

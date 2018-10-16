@@ -1,0 +1,84 @@
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__hd text-right pr-sm">
+    <span class="text-red">{{payStatus[trade.payStatus]}}</span>
+    <span *ngIf="!agencyFlag">
+      姓名: {{trade.agency.name}} {{trade.agency.id}}
+    </span>
+  </div>
+  <div class="weui-panel__bd">
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+      <div class="weui-media-box__hd">
+        <img class="weui-media-box__thumb" src="./assets/product1.jpg"
+             alt="">
+      </div>
+      <div class="weui-media-box__bd">
+        <p class="weui-media-box__desc">
+          订单号: {{trade.tradeNo}}
+        </p>
+        <p class="weui-media-box__desc">
+          交易时间: {{trade.createTime | date:'yyyy-MM-dd HH:mm:ss'}}
+        </p>
+        <p class="weui-media-box__desc" *ngIf="agencyFlag">
+          收货人: {{trade.name}}
+        </p>
+        <p class="weui-media-box__desc">商品名称: <span *ngFor="let name of goodsName">{{name}} </span></p>
+        <p class="weui-media-box__desc text-right pr-sm">
+          共<span class="p-sm">{{trade.goodsList.length}}</span>件商品
+          实付款:<span class="text-red pl-sm" [innerHTML] = "yuan(trade.payableAmount)" ></span>
+        </p>
+        <p class="weui-media-box__desc" *ngIf="!agencyFlag">
+          物流公司: {{trade.trackingName}}
+        </p>
+        <p class="weui-media-box__desc" *ngIf="!agencyFlag">
+          物流单号: {{trade.trackingNo}}
+        </p>
+      </div>
+    </a>
+  </div>
+  <div class="weui-panel__ft" *ngIf="agencyFlag">
+    <div class="weui-cell weui-cell_access weui-cell_link">
+      <div class="weui-cell__bd text-right" >
+        <span class="pl-lg"><a href="javascript:void(0);" [routerLink]="['/trade/detail', trade.tradeNo]">订单详情</a></span>
+        <span class="pl-lg" *ngIf="trade.payStatus === 0"><a href="javascript:void(0);" (click)="mask.show()">立即付款</a></span>
+        <span class="pl-lg" *ngIf="trade.payStatus === 1"><a href="javascript:void(0);" (click)="mask.show()">再次购买</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<weui-mask #mask>
+  <div class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <label class="weui-form-preview__label">确认订单信息</label>
+      <em class="weui-form-preview__value">&nbsp;</em>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">收货人</label>
+        <span class="weui-form-preview__value">{{trade.name}} {{trade.phone}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">收货地址</label>
+        <span class="weui-form-preview__value"> {{trade.province}} {{trade.city}} {{trade.country}}
+          {{trade.address}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">商品数量</label>
+        <span class="weui-form-preview__value">{{trade.totalCount}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">应付金额</label>
+        <span class="weui-form-preview__value" [innerHTML] = "yuan(trade.payableAmount)"></span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">支付方式</label>
+        <span class="weui-form-preview__value">微信支付</span>
+      </div>
+    </div>
+    <div class="weui-form-preview__ft">
+      <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" (click)="mask.hide()">取消</button>
+      <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" (click)="againCheckOut(trade.payStatus)">立即支付</button>
+    </div>
+  </div>
+</weui-mask>
+<weui-mask #loadMask [loading]="loading" [backdrop]="false"></weui-mask>

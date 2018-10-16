@@ -1,38 +1,39 @@
-<div nz-row>
-  <div nz-col>
-    <nz-card class="ant-card__body-nopadding">
-      <div class="half-float">
-        <img src="./assets/banner.png">
+<div class="inline">
+  <img src="./assets/banner.jpg">
+</div>
+<div class="weui-panel weui-panel_access" style="margin-top: 0px; padding-top: 0px;" *ngIf="products">
+  <div *ngFor="let product of products ">
+    <div class="p-lg" style="color: black;">{{product.productName}}</div>
+    <div class="inline">
+      <img src="./assets/product1.jpg">
+    </div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_text" style="color: black;">
+        <div nz-row>
+          <div nz-col nzSpan="8" >统一零售价</div>
+          <div nz-col nzSpan="16" class="weui-media-box__title text-red" [innerHTML] ="yuan(product.amount)"></div>
+        </div>
+        <div nz-row>
+          <div nz-col nzSpan="8">VIP会员尊享价</div>
+          <div nz-col nzSpan="16" class="weui-media-box__title text-red text-left" [innerHTML] ="yuan(product.vipAmount)"></div>
+        </div>
+        <div nz-row>
+          <div nz-col class="weui-media-box__desc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买两支即可成为VIP会员,尊享折扣优惠+佣金,
+            详情查看"润玺尔公众号"->润玺尔->成为VIP会员</div>
+        </div>
       </div>
-    </nz-card>
+    </div>
+    <div class="weui-panel__ft mb-lg">
+      <div class="weui-cell__bd">
+        <div class="weui-flex">
+          <div class="weui-flex__item pl-lg pr-lg">
+            <button weui-button (click)="findProductByProductNo(product.productNo)">查看详情</button>
+          </div>
+          <!--<div class="weui-flex__item">-->
+            <!--<button weui-button weui-mini="mini" (click)="addShoppingCart(product.productNo)">立即付款</button>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<nz-list [nzRenderItem]="item" [nzDataSource]="products" [nzGrid]="{ lg: 6, md: 8, sm: 12, xs: 24 }">
-  <ng-template #item let-item>
-    <nz-list-item>
-      <nz-card nzHoverable [nzCover]="cover">
-        <ng-template #cover>
-          <img alt="{{item.productName}}" src="{{item.cover}}">
-        </ng-template>
-        <nz-card-meta [nzTitle]="nzTitle" [nzDescription]="description">
-          <ng-template #nzTitle>{{item.productName}}</ng-template>
-          <ng-template #description>
-            <div nz-row>
-              <div nz-col [nzSpan]="8">
-                <h1 class="text-center text-red-7 " [innerHTML] = "yuan(item.amount)"></h1>
-              </div>
-              <div nz-col [nzSpan]="16" class="pb-sm">{{ item.description }}</div>
-            </div>
-          </ng-template>
-        </nz-card-meta>
-        <div class="text-center bg-volcano-1 text-red-7 mt-md">
-          <div nz-row class="p-sm">
-            <div nz-col (click)="pay(item.productNo)">
-              <h3 class="text-red-7 mb0">立即购买</h3>
-            </div>
-          </div>
-        </div>
-      </nz-card>
-    </nz-list-item>
-  </ng-template>
-</nz-list>

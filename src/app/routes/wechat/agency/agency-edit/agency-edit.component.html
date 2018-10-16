@@ -1,0 +1,40 @@
+<app-agency [agency]="agency" [showPhone]="false"></app-agency>
+<form #form="ngForm" (ngSubmit)="onSave()">
+  <div class="weui-cells weui-cells_form" style="font-size: 14px">
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">姓  名</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="text" [(ngModel)]="agency.name" name="name" placeholder="请输入姓名"
+                required>
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <label class="weui-label">手机号</label>
+      </div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="tel" [(ngModel)]="agency.telephone" name="telephone" placeholder="请输入手机号"
+               weui-input="mobile" weui-required>
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">邮  箱</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="email" [(ngModel)]="agency.email" name="email" placeholder="请输入邮箱"
+               weui-input="email" weui-required>
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">微信号</label></div>
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="text" [(ngModel)]="agency.wechat" name="wechat" placeholder="请输入微信号"
+               required>
+      </div>
+    </div>
+  </div>
+  <div class="weui-btn-area">
+    <button class="weui-btn weui-btn_primary"
+            [disabled]="!form.form.valid || !form.form.dirty"
+            [ngClass]="{'weui-btn_disabled': !form.form.valid || !form.form.dirty}">确定</button>
+  </div>
+</form>

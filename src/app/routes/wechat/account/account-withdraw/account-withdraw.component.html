@@ -1,0 +1,58 @@
+<form #form="ngForm" (ngSubmit)="onSave()">
+  <div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">收益总金额</label></div>
+      <div class="weui-cell__bd" [innerHTML] = "yuan(digitalWallet.totalAmount)"></div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <label class="weui-label">已提现金额</label>
+      </div>
+      <div class="weui-cell__bd" [innerHTML] = "yuan(digitalWallet.withdrawalAmount)"></div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__hd">
+        <label class="weui-label">余额</label>
+      </div>
+      <div class="weui-cell__bd" [innerHTML] = "yuan(digitalWallet.balance)"></div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        <input class="weui-input" type="number" [(ngModel)]="withdrawalAmount" step="0.01" name="amount"
+               placeholder="提现金额" required>
+      </div>
+    </div>
+    <div class="weui-btn-area">
+      <button weui-button [disabled]="!form.form.valid || !form.form.dirty">提现</button>
+    </div>
+  </div>
+</form>
+
+<weui-infiniteloader (loadmore)="onLoadMore($event)">
+  <div class="weui-form-preview" *ngFor="let withdraw of withdrawList">
+    <div class="weui-form-preview__hd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">提现金额</label>
+        <em class="weui-form-preview__value"><span [innerHTML] = "yuan(withdraw.amount)"></span></em>
+      </div>
+    </div>
+    <div class="weui-form-preview__bd">
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">提现状态</label>
+        <span class="weui-form-preview__value">{{withdrawStatus[withdraw.status]}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">提现时间</label>
+        <span class="weui-form-preview__value">{{withdraw.createTime | date: 'yyyy-mm-dd'}}</span>
+      </div>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">处理时间</label>
+        <span class="weui-form-preview__value">{{withdraw.processTime | date: 'yyyy-mm-dd'}}</span>
+      </div>
+    </div>
+  </div>
+  <weui-loadmore *ngIf="withdrawList.length == 0" type="line"></weui-loadmore>
+</weui-infiniteloader>
+
+<weui-toptips #toptips></weui-toptips>
+<weui-dialog #auto></weui-dialog>

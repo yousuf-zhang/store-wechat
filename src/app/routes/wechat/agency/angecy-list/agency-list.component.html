@@ -1,0 +1,29 @@
+<weui-tabbar>
+  <weui-tab heading="直系会员" (select)="select($event, 1)" [active]="true" [badge]="agencyCounts[0]"
+            [icon]="'<i class=\'anticon anticon-user\'></i>'">
+    <weui-infiniteloader (loadmore)="onLoadMore($event, 1)">
+      <article class="weui-article">
+        <app-agency *ngFor="let agency of agencyList" [agency]="agency"></app-agency>
+        <weui-loadmore *ngIf="!agencyList" type="line"></weui-loadmore>
+      </article>
+    </weui-infiniteloader>
+  </weui-tab>
+  <weui-tab heading="二级会员" (select)="select($event, 2)" [active]="false" [badge]="agencyCounts[1]"
+            [icon]="'<i class=\'anticon anticon-user\'></i>'">
+    <weui-infiniteloader (loadmore)="onLoadMore($event, 2)">
+      <article class="weui-article">
+        <app-agency *ngFor="let agency of agencyList" [agency]="agency"></app-agency>
+        <weui-loadmore *ngIf="!agencyList" type="line"></weui-loadmore>
+      </article>
+    </weui-infiniteloader>
+  </weui-tab>
+  <weui-tab heading="三级会员" (select)="select($event, 3)" [active]="false" [badge]="agencyCounts[2]"
+            [icon]="'<i class=\'anticon anticon-user\'></i>'">
+    <weui-infiniteloader (loadmore)="onLoadMore($event, 3)">
+      <article class="weui-article">
+        <app-agency *ngFor="let agency of agencyList" [agency]="agency"></app-agency>
+        <weui-loadmore *ngIf="!agencyList" type="line"></weui-loadmore>
+      </article>
+    </weui-infiniteloader>
+  </weui-tab>
+</weui-tabbar>

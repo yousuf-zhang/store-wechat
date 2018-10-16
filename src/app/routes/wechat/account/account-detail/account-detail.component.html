@@ -1,0 +1,63 @@
+<nz-card [nzActions]="[first,second,third]">
+  <nz-card-meta [nzTitle]="agency?.name" [nzDescription]="description" [nzAvatar]="avatarTemplate"></nz-card-meta>
+</nz-card>
+<div class="weui-cells__title">近半年业绩图(单位:万元)</div>
+<canvas weui-chart-g2 #chart="chart-g2" style="width:100%;height:200px;"></canvas>
+<div class="weui-cells">
+  <div class="weui-cell weui-cell_access" routerLink="/account/withdraw">
+    <div class="weui-cell__bd">
+      <span style="vertical-align: middle">提现管理</span>
+    </div>
+    <div class="weui-cell__ft"></div>
+  </div>
+</div>
+
+<ng-template #avatarTemplate>
+  <nz-avatar [nzSrc]="agency?.avatar" nzSize="large"></nz-avatar>
+</ng-template>
+<ng-template #description>
+  <div nz-row>
+    <div nz-col nzSpan="10" class="text-right">上月交易额: </div>
+    <div nz-col nzSpan="14">{{wallet.tradeAmount[1]}}</div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="10" class="text-right">本月交易额: </div>
+    <div nz-col nzSpan="14">{{wallet.tradeAmount[0]}} </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="10" class="text-right">收益总金额: </div>
+    <div nz-col nzSpan="14">{{wallet.digitalWallet.totalAmount}} </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="10" class="text-right">余额: </div>
+    <div nz-col nzSpan="14">{{wallet.digitalWallet.balance}} </div>
+  </div>
+</ng-template>
+
+<ng-template #first>
+  <div class="text-left">
+    <p>上月: {{wallet.firstTradeAmount[1]}}</p>
+    <p>本月:  {{wallet.firstTradeAmount[0]}}</p>
+  </div>
+  <h4>直系会员</h4>
+</ng-template>
+
+<ng-template #second >
+  <div>
+    <div class="text-left">
+      <p>上月: {{wallet.secondTradeAmount[1]}}</p>
+      <p>本月: {{wallet.secondTradeAmount[0]}}</p>
+    </div>
+    <h4 >二代会员</h4>
+  </div>
+</ng-template>
+
+<ng-template #third>
+  <div>
+    <div class="text-left">
+      <p>上月: {{wallet.thirdTradeAmount[1]}}</p>
+      <p>本月: {{wallet.thirdTradeAmount[0]}}</p>
+    </div>
+    <h4>三代会员</h4>
+  </div>
+</ng-template>

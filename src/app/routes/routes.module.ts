@@ -16,7 +16,6 @@ import { QrCodeComponent } from './wechat/components/qr-code/qr-code.component';
 import { ShoppingCartComponent } from './wechat/components/shopping-cart/shopping-cart.component';
 import { WechatComponent } from './wechat/wechat.component';
 
-
 const COMPONENTS = [
   WechatComponent,
   OpenWechatComponent,

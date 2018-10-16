@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  SERVER_URL: `https://greenleague.xin`,
+  SERVER_URL: `http://localhost:8080`,
+  CLIENT_URL: `http://localhost:4000`,
   production: false,
   useHash: false,
   hmr: true,

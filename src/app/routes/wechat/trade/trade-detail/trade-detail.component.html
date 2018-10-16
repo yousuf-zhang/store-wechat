@@ -1,0 +1,104 @@
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__hd">配送信息</div>
+  <div class="weui-panel__bd">
+    <div class="weui-media-box weui-media-box_text">
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6" class="text-right">收货人信息: </div>
+        <div nz-col nzSpan="18">{{trade.name}} {{trade.phone}}</div>
+      </div>
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6" class="text-right">收货人地址: </div>
+        <div nz-col nzSpan="18">{{trade.province}} {{trade.city}} {{trade.country}} {{trade.address}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__hd">
+    <div nz-row class="weui-media-box__desc">
+      <div nz-col nzSpan="6">商品清单 </div>
+      <div nz-col nzSpan="18" class="text-right text-red pr-sm">
+        <span [innerHTML] = "yuan(trade.payableAmount)"></span>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel__bd">
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" *ngFor="let goods of goodsList">
+      <div class="weui-media-box__hd">
+        <img class="weui-media-box__thumb" src="./assets/product1.jpg"
+             alt="">
+      </div>
+      <div class="weui-media-box__bd">
+        <div nz-row class="weui-media-box__desc">
+          <div nz-col nzSpan="6">商品名称: </div>
+          <div nz-col nzSpan="18">{{goods.productName}}</div>
+        </div>
+        <div nz-row class="weui-media-box__desc text-red mt-lg">
+          <div nz-col nzSpan="6" [innerHTML] = "yuan(goods.amount)"></div>
+          <div nz-col nzSpan="18" class="text-right"> x{{goods.count}}</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__hd">费用明细</div>
+  <div class="weui-panel__bd">
+    <div class="weui-media-box weui-media-box_text">
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6">商品金额: </div>
+        <div nz-col nzSpan="18" class="text-red"><span [innerHTML]="yuan(trade.totalAmount)"></span></div>
+      </div>
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6" >优惠金额: </div>
+        <div nz-col nzSpan="18" class="text-red"><span [innerHTML]="yuan(trade.discountAmount)"></span></div>
+      </div>
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6" >实付金额: </div>
+        <div nz-col nzSpan="18" class="text-red"><span [innerHTML]="yuan(trade.payableAmount)"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__hd">订单信息</div>
+  <div class="weui-panel__bd">
+    <div class="weui-media-box weui-media-box_text">
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6">订单编号: </div>
+        <div nz-col nzSpan="18">{{trade.tradeNo}}</div>
+      </div>
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6" >成交时间: </div>
+        <div nz-col nzSpan="18" >{{trade.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+      </div>
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6">订单状态: </div>
+        <div nz-col nzSpan="18">{{payStatus[trade.payStatus]}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__hd">物流信息</div>
+  <div class="weui-panel__bd">
+    <div class="weui-media-box weui-media-box_text">
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6">物流状态: </div>
+        <div nz-col nzSpan="18">{{shipStatus[trade.shipStatus]}}</div>
+      </div>
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6">物流公司: </div>
+        <div nz-col nzSpan="18">{{trade.trackingName}}</div>
+      </div>
+      <div nz-row class="weui-media-box__desc">
+        <div nz-col nzSpan="6">物流单号: </div>
+        <div nz-col nzSpan="18">{{trade.trackingNo}}</div>
+      </div>
+    </div>
+  </div>
+</div>

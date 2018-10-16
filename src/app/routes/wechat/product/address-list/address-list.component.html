@@ -1,0 +1,35 @@
+<button weui-button routerLink="/product/address-add">添加收货地址</button>
+<div class="weui-panel weui-panel_access" *ngFor="let address of addressList">
+  <div class="weui-panel__hd">
+    <div class="weui-cell__bd">
+      <div class="weui-flex pl-lg pr-lg">
+        <div class="weui-flex__item text-left">{{address.name}}</div>
+        <div class="weui-flex__item text-right">{{address.phone}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="weui-panel__bd" (click)="selectAddress(address)">
+    <div class="weui-media-box weui-media-box_text">
+      <p class="weui-media-box__desc">
+        {{address.province}} {{address.city}} {{address.country}}  {{address.address}}
+      </p>
+    </div>
+  </div>
+  <div class="weui-panel__ft">
+    <div class="weui-cell weui-cell_access">
+      <div class="weui-cell__bd">
+        <div class="weui-flex ">
+          <div class="weui-flex__item text-left">
+            <div><input type="radio" class="weui-agree__checkbox" (click)="changeStatus(address)" [checked]="address.status"  name="status">
+             <span class="weui-agree__text">默认地址</span>
+            </div>
+          </div>
+          <div class="weui-flex__item text-right">
+            <a (click)="editAddress(address)" class="pr-sm"><i class="anticon anticon-edit"></i>修改</a>
+            <a (click)="deleteAddress(address.id)"><i class="anticon anticon-delete"></i>删除</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
